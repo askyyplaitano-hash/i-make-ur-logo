@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Logo - Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            display: inline-block;
+            color: #888;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+
+        .back-button:hover {
+            color: #fff;
+        }
+
+        h1 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            color: #888;
+            margin-bottom: 40px;
+            font-size: 1.05em;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .optional {
+            color: #666;
+            font-weight: normal;
+            font-size: 0.9em;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 15px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #fff;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+
+        select option {
+            background: #111;
+            color: #fff;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: #fff;
+            color: #000;
+            padding: 18px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-button:hover {
+            background: #ddd;
+        }
+
+        .submit-button:active {
+            transform: scale(0.98);
+        }
+
+        .success-message {
+            display: none;
+            background: #111;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.05em;
+        }
+
+        .required {
+            color: #fff;
+        }
+
+        ::placeholder {
+            color: #555;
+        }
+
+        .file-input {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .file-input::-webkit-file-upload-button {
+            background: #fff;
+            color: #000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .file-input::-webkit-file-upload-button:hover {
+            background: #ddd;
+        }
+
+        .image-preview {
+            margin-top: 15px;
+            max-width: 100%;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 300px;
+            border: 1px solid #222;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Back to home</a>
+        
+        <h1>Request Your Logo</h1>
+        <p class="subtitle">Fill out the form to order your custom logo</p>
+
+        <form id="logoForm">
+            <div class="form-group">
+                <label for="username">
+                    Roblox Username <span class="required">*</span>
+                </label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    placeholder="Enter your Roblox username" 
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="discord">
+                    Discord <span class="optional">(optional)</span>
+                </label>
+                <input 
+                    type="text" 
+                    id="discord" 
+                    name="discord" 
+                    placeholder="e.g. username#1234"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="descrizione">
+                    Logo Description <span class="required">*</span>
+                </label>
+                <textarea 
+                    id="descrizione" 
+                    name="descrizione" 
+                    placeholder="Describe the logo you want: colors, style, text to include, etc..." 
+                    required
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="example">
+                    Reference Image <span class="optional">(optional)</span>
+                </label>
+                <input 
+                    type="file" 
+                    id="example" 
+                    name="example" 
+                    accept="image/*"
+                    class="file-input"
+                >
+                <div id="imagePreview" class="image-preview"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="pagamento">
+                    I want to pay with: <span class="required">*</span>
+                </label>
+                <select id="pagamento" name="pagamento" required>
+                    <option value="">-- Select payment method --</option>
+                    <option value="please_donate">Please Donate</option>
+                    <option value="gift_card">Gift Card</option>
+                    <option value="rivals_gift">Rivals Gift</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-button">
+                Submit Request
+            </button>
+        </form>
+
+        <div id="successMessage" class="success-message">
+            Request sent successfully! I will contact you soon!
+        </div>
+    </div>
+
+    <script>
+        // Image preview
+        document.getElementById('example').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const preview = document.getElementById('imagePreview');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.innerHTML = '<img src="' + e.target.result + '" alt="Preview">';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.innerHTML = '';
+            }
+        });
+
+        document.getElementById('logoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = {
+                username: document.getElementById('username').value,
+                discord: document.getElementById('discord').value,
+                descrizione: document.getElementById('descrizione').value,
+                pagamento: document.getElementById('pagamento').value,
+                hasImage: document.getElementById('example').files.length > 0
+            };
+
+            // Here you can add code to send the data
+            // For now we just show a success message
+            console.log('Data received:', formData);
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            document.getElementById('imagePreview').innerHTML = '';
+            
+            // Hide message after 5 seconds
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+            
+            // NOTE: Add your custom submission method here
+            // Examples:
+            // - Discord webhook
+            // - Email service
+            // - Database storage
+            // - Google Forms redirect
+        });
+    </script>
+</body>
+</html>

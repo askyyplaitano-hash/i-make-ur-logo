@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Logos Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 60px;
+            font-size: 1.2em;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .logo-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .logo-card:hover {
+            transform: translateY(-5px);
+            border-color: #fff;
+        }
+
+        .logo-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .pricing-section {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 50px;
+            margin-bottom: 60px;
+        }
+
+        .pricing-section h2 {
+            color: #fff;
+            margin-bottom: 40px;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .price-list {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .price-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+        }
+
+        .price-item-title {
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .price-item-desc {
+            color: #888;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        .price-item-cost {
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            display: block;
+            background: #fff;
+            color: #000;
+            padding: 18px 50px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            text-align: center;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .cta-button:hover {
+            background: #ddd;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .pricing-section {
+                padding: 30px 20px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Roblox Logos</h1>
+        <p class="subtitle">Professional logo designs</p>
+
+        <div class="gallery">
+            <div class="logo-card">
+                <img src="preview.webp" alt="Roblox Logo 1">
+            </div>
+
+            <div class="logo-card">
+                <img src="Hydennnnnnn.png" alt="Roblox Logo 2">
+            </div>
+
+            <div class="logo-card">
+                <img src="Game_Shift.png" alt="Roblox Logo 3">
+            </div>
+        </div>
+
+        <div class="pricing-section">
+            <h2>Pricing</h2>
+            <div class="price-list">
+                <div class="price-item">
+                    <div class="price-item-title">Base Logo</div>
+                    <div class="price-item-desc">Your OC + cool background</div>
+                    <div class="price-item-cost">100 - 200 R$</div>
+                </div>
+
+                <div class="price-item">
+                    <div class="price-item-title">Custom GFX and VFX</div>
+                    <div class="price-item-desc">Additional graphics and visual effects</div>
+                    <div class="price-item-cost">+50 R$</div>
+                </div>
+
+                <div class="price-item">
+                    <div class="price-item-title">Editing and Social Logos</div>
+                    <div class="price-item-desc">Add social media logos to your design</div>
+                    <div class="price-item-cost">+15 R$</div>
+                </div>
+
+                <div class="price-item">
+                    <div class="price-item-title">Your Name on Logo</div>
+                    <div class="price-item-desc">Join Discord for free or pay extra</div>
+                    <div class="price-item-cost">Free (Discord) / +35 R$</div>
+                </div>
+            </div>
+        </div>
+
+        <a href="request.html" class="cta-button">Request Your Logo</a>
+    </div>
+</body>
+</html>
