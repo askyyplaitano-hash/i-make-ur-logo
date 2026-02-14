@@ -270,11 +270,12 @@
     </div>
 
     <script>
+        const WEBHOOK_URL = 'https://discord.com/api/webhooks/1471974843514617956/QAdwjRPc_C1d3ze63J0J5XSilOVqeSehDIomQDMw_qRH2gnp7957idTUnJi73NsiOqiv';
+
         // Image preview
         document.getElementById('example').addEventListener('change', function(e) {
             const file = e.target.files[0];
             const preview = document.getElementById('imagePreview');
-            
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
@@ -286,40 +287,98 @@
             }
         });
 
-        document.getElementById('logoForm').addEventListener('submit', function(e) {
+        document.getElementById('logoForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            // Collect form data
-            const formData = {
-                username: document.getElementById('username').value,
-                discord: document.getElementById('discord').value,
-                descrizione: document.getElementById('descrizione').value,
-                pagamento: document.getElementById('pagamento').value,
-                hasImage: document.getElementById('example').files.length > 0
+
+            const username = document.getElementById('username').value;
+            const discord = document.getElementById('discord').value;
+            const descrizione = document.getElementById('descrizione').value;
+            const pagamento = document.getElementById('pagamento').value;
+            const imageFile = document.getElementById('example').files[0];
+
+            const submitBtn = document.querySelector('.submit-button');
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            const paymentLabel = {
+                'please_donate': '💰 Please Donate',
+                'gift_card': '🎁 Gift Card',
+                'rivals_gift': '⚔️ Rivals Gift'
             };
 
-            // Here you can add code to send the data
-            // For now we just show a success message
-            console.log('Data received:', formData);
-            
-            // Show success message
-            document.getElementById('successMessage').style.display = 'block';
-            
-            // Reset form
-            this.reset();
-            document.getElementById('imagePreview').innerHTML = '';
-            
-            // Hide message after 5 seconds
-            setTimeout(function() {
-                document.getElementById('successMessage').style.display = 'none';
-            }, 5000);
-            
-            // NOTE: Add your custom submission method here
-            // Examples:
-            // - Discord webhook
-            // - Email service
-            // - Database storage
-            // - Google Forms redirect
+            const embed = {
+                title: '🎨 New Logo Request',
+                description: '─────────────────────────\nA new order just came in! Check the details below.\n─────────────────────────',
+                color: 0x2ecc71,
+                fields: [
+                    {
+                        name: '👤 Roblox Username',
+                        value: '```' + username + '```',
+                        inline: true
+                    },
+                    {
+                        name: '💬 Discord',
+                        value: '```' + (discord || 'Not provided') + '```',
+                        inline: true
+                    },
+                    {
+                        name: '💳 Payment Method',
+                        value: paymentLabel[pagamento] || pagamento,
+                        inline: false
+                    },
+                    {
+                        name: '📝 Logo Description',
+                        value: '>>> ' + descrizione,
+                        inline: false
+                    },
+                    {
+                        name: '🖼️ Reference Image',
+                        value: imageFile ? '✅ See thumbnail →' : '❌ Not provided',
+                        inline: false
+                    }
+                ],
+                footer: {
+                    text: 'Logo Request Form'
+                },
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                if (imageFile) {
+                    // Thumbnail = immagine quadrata a destra (layout orizzontale)
+                    embed.thumbnail = { url: 'attachment://' + imageFile.name };
+
+                    const formData = new FormData();
+                    formData.append('file', imageFile, imageFile.name);
+                    formData.append('payload_json', JSON.stringify({ embeds: [embed] }));
+
+                    await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        body: formData
+                    });
+                } else {
+                    await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ embeds: [embed] })
+                    });
+                }
+
+                document.getElementById('successMessage').style.display = 'block';
+                this.reset();
+                document.getElementById('imagePreview').innerHTML = '';
+
+                setTimeout(function() {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+
+            } catch (error) {
+                alert('Something went wrong. Please try again.');
+                console.error(error);
+            } finally {
+                submitBtn.textContent = 'Submit Request';
+                submitBtn.disabled = false;
+            }
         });
     </script>
 </body>
